@@ -82,102 +82,331 @@
 // let str_1 = new ReverseStr("hello")
 // console.log(str_1.reverse())
 
-class Node {
+//----------------------
+//---singlyLinkedList---
+//----------------------
+
+// class Node {
+//   constructor(val) {
+//     this.val = val;
+//     this.next = null;
+//   }
+// }
+
+// class SinglyLinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.length = 0;
+//   }
+
+//   push(val) {
+//     let newNode = new Node(val);
+//     if (!this.head) {
+//       this.head = newNode;
+//       this.tail = newNode;
+//     } else {
+//       this.tail = newNode.next;
+//       this.tail = newNode;
+//     }
+//   }
+
+//   pop() {
+//     if (this.tail) return "there is nothing to pop";
+//     let current = this.head;
+//     let newTail = current;
+//     while (current.next) {
+//       newTail = current;
+//       current = current.next;
+//     }
+
+//     this.tail = newTail;
+//     this.tail.next = null;
+//     this.length--;
+//   }
+
+//   shift() {
+//     if (!this.head) return "there is nothing to shift";
+//     let currentHead = this.head;
+//     currentHead.next = this.head;
+//     this.length--;
+//   }
+
+//   unshift(val) {
+//     let newNode = new Node(val);
+//     if (!this.head) {
+//       this.head = newNode;
+//       this.tail = this.head;
+//     } else {
+//       newNode.next = this.head;
+//       this.head = newNode;
+//     }
+//     this.length++;
+//   }
+
+//   get(index) {
+//     if (index < 0 || index >= this.length) return null;
+//     let current = this.head;
+//     let counter = 0;
+//     while (counter != index) {
+//       current = current.next;
+//       counter++;
+//     }
+
+//     return current;
+//   }
+
+//   set(val, index) {
+//     if (index < 0 || index >= this.length) return null;
+//     let selectedNode = this.get(index);
+//     if (selectedNode) {
+//       selectedNode.val = val;
+//     }
+//   }
+
+//   insert(val, index) {
+//     let newNode = new Node(val);
+//     if (index === 0) return this.unshift(val);
+//     if (index === this.length - 1) return this.push(val);
+//     if (index < 0 || index >= this.length) return null;
+//     let prev = this.get(index - 1);
+//     let temp = prev.next;
+//     prev.next = newNode;
+//     temp = newNode.next;
+//     this.length++;
+//   }
+
+//   remove(index) {
+//     if (index < 0 || index >= this.length) return null;
+//     if (index === 0) return this.shift();
+//     if (index === this.length - 1) return this.pop();
+//     let prev = this.get(index - 1);
+//     let removed = this.get(index);
+//     prev.next = removed.next;
+//   }
+// }
+
+//----------------------
+//---DoubleLinkedList---
+//----------------------
+
+// class Node {
+//   constructor(val) {
+//     this.val = val;
+//     this.next = null;
+//     this.prev = null;
+//   }
+// }
+
+// class DoubleLinkedList {
+//   constructor() {
+//     this.length = 0;
+//     this.head = null;
+//     this.tail = null;
+//   }
+
+//   push(val) {
+//     let newNode = new Node(val);
+//     if (this.length === 0) {
+//       this.head = newNode;
+//       this.tail = newNode;
+//     } else {
+//       this.tail.next = newNode;
+//       newNode.prev = this.tail;
+//       this.tail = newNode;
+//     }
+//     this.length++;
+
+//     return newNode;
+//   }
+
+//   pop() {
+//     if (this.length === 0) return "there is nothing to pop";
+//     let poped = this.tail;
+//     if (this.length === 1) {
+//       this.head = null;
+//       this.tail = null;
+//     } else {
+
+//       this.tail = poped.prev;
+//       this.tail.next.prev = null;
+//       this.tail.next = null;
+//     }
+//     this.length--;
+
+//     return poped;
+//   }
+
+//   shift() {
+//     if (this.length === 0) return "there is nothing to shift";
+//     let shifted = this.head;
+//     if (this.length === 1) {
+//       this.head = null;
+//       this.tail = null;
+//     } else {
+//       this.head = shifted.next;
+//       this.head.prev.next = null;
+//       this.prev=null
+//     }
+//     this.length--
+
+//     return shifted
+//   }
+
+//   unshift(val){
+//     let newNode = new Node(val);
+//     if(this.length===1){
+//       this.tail=newNode;
+//       this.head-newNode
+//     }else{
+//       this.head.prev=newNode;
+//       newNode.next=this.head;
+//       this.head-newNode
+//     }
+//     this.length++
+
+//     return newNode
+//   }
+// }
+
+// let d_list = new DoubleLinkedList;
+// d_list.push('james bond')
+// d_list.push('jason born')
+// d_list.push('agent_047')
+// console.log(d_list);
+
+//----------------------
+//------PlayList--------
+//----------------------
+
+class Song {
   constructor(val) {
     this.val = val;
     this.next = null;
+    this.prev = null;
   }
 }
 
-class SinglyLinkedList {
+class PlayList {
   constructor() {
-    this.head = null;
     this.tail = null;
+    this.head = null;
     this.length = 0;
   }
 
-  push(val) {
-    let newNode = new Node(val);
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
+  addSongLast(val) {
+    let newSong = new Song(val);
+    if (this.length === 0) {
+      this.head = newSong;
+      this.tail = newSong;
     } else {
-      this.tail = newNode.next;
-      this.tail = newNode;
-    }
-  }
-
-  pop() {
-    if (this.tail) return "there is nothing to pop";
-    let current = this.head;
-    let newTail = current;
-    while (current.next) {
-      newTail = current;
-      current = current.next;
-    }
-
-    this.tail = newTail;
-    this.tail.next = null;
-    this.length--;
-  }
-
-  shift() {
-    if (!this.head) return "there is nothing to shift";
-    let currentHead = this.head;
-    currentHead.next = this.head;
-    this.length--;
-  }
-
-  unshift(val) {
-    let newNode = new Node(val);
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = this.head;
-    } else {
-      newNode.next = this.head;
-      this.head = newNode;
+      this.tail.next = newSong;
+      newSong.prev = this.tail;
+      this.tail = newSong;
     }
     this.length++;
+
+    return newSong;
   }
 
-  get(index) {
-    if (index < 0 || index >= this.length) return null;
+  addSongFirst(val) {
+    let newSong = new Song(val);
+    if (this.length === 0) {
+      this.head = newSong;
+      this.tail = newSong;
+    } else {
+      this.head.prev = newSong;
+      newSong.next = this.head;
+      this.head = newSong;
+    }
+    this.length++;
+
+    return newSong;
+  }
+
+  findSongByName(val) {
+    if (this.length === 0)return "there are no songs in your playlist, add them now";
+      
     let current = this.head;
-    let counter = 0;
+    let counter=1
+    while (current) {
+      if (current.val === val) {
+        return "song found: " + val+`, its is number ${counter} in your playlist`;
+      }
+      counter++
+      current = current.next;
+    }
+    return "no songs found with typed name";
+  }
+
+  findSongByIndex(index) {
+    if (this.length === 0) return "there are no songs in your playlist, add them now";
+    if (this.length <= 0) return "index must be natural number";
+    if (index > this.length) return "there is no songs with typed index";
+    let current = this.head;
+    let counter = 1;
     while (counter != index) {
-      current = current.next;
       counter++;
+      current = current.next;
+    }
+    return `number ${index} song in your playlist: `+ current.val;
+  }
+
+  nextSong(val) {
+    if (this.length === 0) return "There are no songs in your playlist, add them now";
+
+    let current = this.head;
+    while (current.val !== val) {
+        current = current.next;
     }
 
-    return current;
+    if (current === null) return "Song not found in the playlist";
+
+    return current.next ? current.next.val : "End of playlist";
+}
+
+prevSong(val) {
+  if (this.length === 0) return "There are no songs in your playlist, add them now";
+
+  let current = this.head;
+  while (current.val !== val) {
+      current = current.next;
   }
 
-  set(val, index) {
-    if (index < 0 || index >= this.length) return null;
-    let selectedNode = this.get(index);
-    if (selectedNode) {
-      selectedNode.val = val;
+  if (current === null) return "Song not found in the playlist";
+
+  return current.prev ? current.prev.val : "End of playlist";
+}
+
+  wholePlaylist(){
+    if (this.length === 0) return "There are no songs in your playlist, add them now";
+    let playlistArr=[]
+    let current=this.head
+    while(current){
+      playlistArr.push(current.val)
+      current=current.next
     }
-  }
 
-  insert(val, index) {
-    let newNode = new Node(val);
-    if (index === 0) return this.unshift(val);
-    if (index === this.length - 1) return this.push(val);
-    if (index < 0 || index >= this.length) return null;
-    let prev = this.get(index - 1);
-    let temp = prev.next;
-    prev.next = newNode;
-    temp = newNode.next;
-    this.length++;
+    let str=playlistArr.join(', ')
+    return str
   }
+  revercedPlaylist(){
+    if (this.length === 0) return "There are no songs in your playlist, add them now";
+    let playlistArr=[]
+    let current=this.head
+    while(current){
+      playlistArr.push(current.val)
+      current=current.next
+    }
 
-  remove(index) {
-    if (index < 0 || index >= this.length) return null;
-    if (index === 0) return this.shift();
-    if (index === this.length - 1) return this.pop();
-    let prev = this.get(index - 1);
-    let removed = this.get(index);
-    prev.next = removed.next;
+    let str=playlistArr.reverse().join(', ')
+    return str
   }
 }
+
+let my_playList = new PlayList();
+my_playList.addSongLast("till i collapse");
+my_playList.addSongLast("mockinbird");
+my_playList.addSongLast("make it bun dem");
+console.log(my_playList);
+console.log(my_playList.revercedPlaylist());
