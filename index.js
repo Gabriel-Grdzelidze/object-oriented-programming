@@ -387,7 +387,7 @@ prevSong(val) {
       current=current.next
     }
 
-    let str=playlistArr.join(', ')
+    let str=playlistArr.join(' -> ')
     return str
   }
   revercedPlaylist(){
@@ -399,8 +399,28 @@ prevSong(val) {
       current=current.next
     }
 
-    let str=playlistArr.reverse().join(', ')
+    let str=playlistArr.reverse().join(' -> ')
     return str
+  }
+
+  removeSong(index){
+    if (this.length === 0) return "there are no songs in your playlist, add them now";
+    if (this.length <= 0) return "index must be natural number";
+    if (index > this.length) return "there is no songs with typed index";
+    
+    let current = this.head;
+    let counter = 1;
+    while (counter != index) {
+      counter++;
+      current = current.next;
+    }
+    let removedSong=current;
+    removedSong.prev.next= removedSong.next
+    removedSong.next.prev= removedSong.prev
+    removedSong.prev
+    this.length--
+
+    return removedSong
   }
 }
 
@@ -408,5 +428,7 @@ let my_playList = new PlayList();
 my_playList.addSongLast("till i collapse");
 my_playList.addSongLast("mockinbird");
 my_playList.addSongLast("make it bun dem");
+my_playList.addSongLast("bad boys");
+
+console.log(my_playList.wholePlaylist());
 console.log(my_playList);
-console.log(my_playList.revercedPlaylist());
