@@ -279,156 +279,358 @@
 //------PlayList--------
 //----------------------
 
-class Song {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-    this.prev = null;
-  }
-}
+// class Song {
+//   constructor(val) {
+//     this.val = val;
+//     this.next = null;
+//     this.prev = null;
+//   }
+// }
 
-class PlayList {
-  constructor() {
-    this.tail = null;
-    this.head = null;
-    this.length = 0;
-  }
+// class PlayList {
+//   constructor() {
+//     this.tail = null;
+//     this.head = null;
+//     this.length = 0;
+//   }
 
-  addSongLast(val) {
-    let newSong = new Song(val);
-    if (this.length === 0) {
-      this.head = newSong;
-      this.tail = newSong;
-    } else {
-      this.tail.next = newSong;
-      newSong.prev = this.tail;
-      this.tail = newSong;
-    }
-    this.length++;
+//   addSongLast(val) {
+//     let newSong = new Song(val);
+//     if (this.length === 0) {
+//       this.head = newSong;
+//       this.tail = newSong;
+//     } else {
+//       this.tail.next = newSong;
+//       newSong.prev = this.tail;
+//       this.tail = newSong;
+//     }
+//     this.length++;
 
-    return newSong;
-  }
+//     return newSong;
+//   }
 
-  addSongFirst(val) {
-    let newSong = new Song(val);
-    if (this.length === 0) {
-      this.head = newSong;
-      this.tail = newSong;
-    } else {
-      this.head.prev = newSong;
-      newSong.next = this.head;
-      this.head = newSong;
-    }
-    this.length++;
+//   addSongFirst(val) {
+//     let newSong = new Song(val);
+//     if (this.length === 0) {
+//       this.head = newSong;
+//       this.tail = newSong;
+//     } else {
+//       this.head.prev = newSong;
+//       newSong.next = this.head;
+//       this.head = newSong;
+//     }
+//     this.length++;
 
-    return newSong;
-  }
+//     return newSong;
+//   }
 
-  findSongByName(val) {
-    if (this.length === 0)return "there are no songs in your playlist, add them now";
-      
-    let current = this.head;
-    let counter=1
-    while (current) {
-      if (current.val === val) {
-        return "song found: " + val+`, its is number ${counter} in your playlist`;
-      }
-      counter++
-      current = current.next;
-    }
-    return "no songs found with typed name";
-  }
+//   findSongByName(val) {
+//     if (this.length === 0)return "there are no songs in your playlist, add them now";
 
-  findSongByIndex(index) {
-    if (this.length === 0) return "there are no songs in your playlist, add them now";
-    if (this.length <= 0) return "index must be natural number";
-    if (index > this.length) return "there is no songs with typed index";
-    let current = this.head;
-    let counter = 1;
-    while (counter != index) {
-      counter++;
-      current = current.next;
-    }
-    return `number ${index} song in your playlist: `+ current.val;
-  }
+//     let current = this.head;
+//     let counter=1
+//     while (current) {
+//       if (current.val === val) {
+//         return "song found: " + val+`, its is number ${counter} in your playlist`;
+//       }
+//       counter++
+//       current = current.next;
+//     }
+//     return "no songs found with typed name";
+//   }
 
-  nextSong(val) {
-    if (this.length === 0) return "There are no songs in your playlist, add them now";
+//   findSongByIndex(index) {
+//     if (this.length === 0) return "there are no songs in your playlist, add them now";
+//     if (this.length <= 0) return "index must be natural number";
+//     if (index > this.length) return "there is no songs with typed index";
+//     let current = this.head;
+//     let counter = 1;
+//     while (counter != index) {
+//       counter++;
+//       current = current.next;
+//     }
+//     return `number ${index} song in your playlist: `+ current.val;
+//   }
 
-    let current = this.head;
-    while (current.val !== val) {
-        current = current.next;
-    }
+//   nextSong(val) {
+//     if (this.length === 0) return "There are no songs in your playlist, add them now";
 
-    if (current === null) return "Song not found in the playlist";
+//     let current = this.head;
+//     while (current.val !== val) {
+//         current = current.next;
+//     }
 
-    return current.next ? current.next.val : "End of playlist";
-}
+//     if (current === null) return "Song not found in the playlist";
 
-prevSong(val) {
-  if (this.length === 0) return "There are no songs in your playlist, add them now";
+//     return current.next ? current.next.val : "End of playlist";
+// }
 
-  let current = this.head;
-  while (current.val !== val) {
-      current = current.next;
-  }
+// prevSong(val) {
+//   if (this.length === 0) return "There are no songs in your playlist, add them now";
 
-  if (current === null) return "Song not found in the playlist";
+//   let current = this.head;
+//   while (current.val !== val) {
+//       current = current.next;
+//   }
 
-  return current.prev ? current.prev.val : "End of playlist";
-}
+//   if (current === null) return "Song not found in the playlist";
 
-  wholePlaylist(){
-    if (this.length === 0) return "There are no songs in your playlist, add them now";
-    let playlistArr=[]
-    let current=this.head
-    while(current){
-      playlistArr.push(current.val)
-      current=current.next
-    }
+//   return current.prev ? current.prev.val : "End of playlist";
+// }
 
-    let str=playlistArr.join(' -> ')
-    return str
-  }
-  revercedPlaylist(){
-    if (this.length === 0) return "There are no songs in your playlist, add them now";
-    let playlistArr=[]
-    let current=this.head
-    while(current){
-      playlistArr.push(current.val)
-      current=current.next
-    }
+//   wholePlaylist(){
+//     if (this.length === 0) return "There are no songs in your playlist, add them now";
+//     let playlistArr=[]
+//     let current=this.head
+//     while(current){
+//       playlistArr.push(current.val)
+//       current=current.next
+//     }
 
-    let str=playlistArr.reverse().join(' -> ')
-    return str
-  }
+//     let str=playlistArr.join(' -> ')
+//     return str
+//   }
+//   revercedPlaylist(){
+//     if (this.length === 0) return "There are no songs in your playlist, add them now";
+//     let playlistArr=[]
+//     let current=this.head
+//     while(current){
+//       playlistArr.push(current.val)
+//       current=current.next
+//     }
 
-  removeSong(index){
-    if (this.length === 0) return "there are no songs in your playlist, add them now";
-    if (this.length <= 0) return "index must be natural number";
-    if (index > this.length) return "there is no songs with typed index";
-    
-    let current = this.head;
-    let counter = 1;
-    while (counter != index) {
-      counter++;
-      current = current.next;
-    }
-    let removedSong=current;
-    removedSong.prev.next= removedSong.next
-    removedSong.next.prev= removedSong.prev
-    removedSong.prev
-    this.length--
+//     let str=playlistArr.reverse().join(' -> ')
+//     return str
+//   }
 
-    return removedSong
-  }
-}
+//   removeSong(index){
+//     if (this.length === 0) return "there are no songs in your playlist, add them now";
+//     if (this.length <= 0) return "index must be natural number";
+//     if (index > this.length) return "there is no songs with typed index";
 
-let my_playList = new PlayList();
-my_playList.addSongLast("till i collapse");
-my_playList.addSongLast("mockinbird");
-my_playList.addSongLast("make it bun dem");
-my_playList.addSongLast("bad boys");
+//     let current = this.head;
+//     let counter = 1;
+//     while (counter != index) {
+//       counter++;
+//       current = current.next;
+//     }
+//     let removedSong=current;
+//     removedSong.prev.next= removedSong.next
+//     removedSong.next.prev= removedSong.prev
+//     removedSong.prev
+//     this.length--
 
-console.log(my_playList.wholePlaylist());
-console.log(my_playList);
+//     return removedSong
+//   }
+// }
+
+// let my_playList = new PlayList();
+// my_playList.addSongLast("till i collapse");
+// my_playList.addSongLast("mockinbird");
+// my_playList.addSongLast("make it bun dem");
+// my_playList.addSongLast("bad boys");
+
+// console.log(my_playList.wholePlaylist());
+// console.log(my_playList);
+
+//----------------------
+//---BinarySearchTree---
+//----------------------
+
+// class Node{
+//   constructor(val){
+//     this.val=val;
+//     this.right=null;
+//     this.left=null
+//   }
+// }
+
+// class BinarysearchTree{
+//   constructor(){
+//     this.root=null
+//   }
+
+//   insert(val){
+//     let newNode = new Node(val);
+//     if(this.root===null){
+//       this.root=newNode
+//       return this
+//     }
+//     let current=this.root
+//     while(true){
+//       if(val===current.val) return undefined
+//       if(val<current.val){
+//         if(current.left===null){
+//           current.left=newNode
+//           return this
+//         }
+//         current=current.left
+//       }else{
+//         if(current.right===null){
+//           current.right=newNode
+//           return this
+//         }
+//         current=current.right
+//       }
+//     }
+//   }
+// }
+
+//----------------------
+//------orders-------
+//----------------------
+
+// class Node{
+//   constructor(val){
+//     this.val=val;
+//     this.right=null;
+//     this.left=null
+//   }
+// }
+
+// class BinarysearchTree{
+//   constructor(){
+//     this.root=null
+//   }
+
+//   insert(val){
+//     let newNode = new Node(val);
+//     if(this.root===null){
+//       this.root=newNode
+//       return this
+//     }
+//     let current=this.root
+//     while(true){
+//       if(val===current.val) return undefined
+//       if(val<current.val){
+//         if(current.left===null){
+//           current.left=newNode
+//           return this
+//         }
+//         current=current.left
+//       }else{
+//         if(current.right===null){
+//           current.right=newNode
+//           return this
+//         }
+//         current=current.right
+//       }
+//     }
+//   }
+
+//   DFS_preOrder(){
+//     let result=[]
+//     function traverse(node){
+//       result.push(node.val)
+//       if(node.left) traverse(node.left)
+//       if(node.right) traverse(node.right)
+//     }
+//     traverse(this.root)
+//     return result
+//   }
+//   DFS_postOrder(){
+//     let result=[]
+//     function traverse(node){
+//       if(node.left) traverse(node.left)
+//       if(node.right) traverse(node.right)
+//       result.push(node.val)
+//     }
+//     traverse(this.root)
+//     return result
+//   }
+
+//   DFS_inOrder(){
+//     let result=[]
+//     function traverse(node){
+//       if(node.left) traverse(node.left)
+//       result.push(node.val)
+//       if(node.right) traverse(node.right)
+//     }
+//     traverse(this.root)
+//     return result
+//   }
+// }
+
+//----------------------
+//--------heap---------
+//----------------------
+
+// class MaxBinaryHeap {
+//   constructor() {
+//     this.values = [];
+//   }
+
+//   insert(val) {
+//     this.values.push(val);
+//     this.bubbleUp();
+//     return this;
+//   }
+
+//   bubbleUp() {
+//     let index = this.values.length - 1;
+//     const element = this.values[index];
+//     while (index > 0) {
+//       let parentIndex = Math.floor((index - 1) / 2);
+//       let parent = this.values[parentIndex];
+//       if (element <= parent) break;
+//       this.values[parentIndex] = element;
+//       this.values[index] = parent;
+//       index = parentIndex;
+//     }
+//   }
+
+//   extractMax() {
+//     if (this.values.length === 0) return undefined;
+//     const max = this.values[0];
+//     const end = this.values.pop();
+//     if (this.values.length > 0) {
+//       this.values[0] = end;
+//       this.sinkDown();
+//     }
+//     return max;
+//   } 
+//   sinkDown() {
+//     let index = 0;
+//     const length = this.values.length;
+//     const element = this.values[0];
+
+//     while (true) {
+//       let leftChildIndex = 2 * index + 1;
+//       let rightChildIndex = 2 * index + 2;
+//       let leftChild, rightChild;
+//       let swap = null;
+
+//       if (leftChildIndex < length) {
+//         leftChild = this.values[leftChildIndex];
+//         if (leftChild > element) {
+//           swap = leftChildIndex;
+//         }
+//       }
+
+//       if (rightChildIndex < length) {
+//         rightChild = this.values[rightChildIndex];
+//         if (
+//           (swap === null && rightChild > element) ||
+//           (swap !== null && rightChild > leftChild)
+//         ) {
+//           swap = rightChildIndex;
+//         }
+//       }
+
+//       if (swap === null) break;
+
+//       this.values[index] = this.values[swap];
+//       this.values[swap] = element;
+//       index = swap;
+//     }
+//   }   dequeue() {
+//     if (this.values.length === 0) return undefined;
+//     const max = this.values[0];
+//     const end = this.values.pop();
+//     if (this.values.length > 0) {
+//       this.values[0] = end;
+//       this.sinkDown();
+//     }
+//     return max;
+//   }
+// }
